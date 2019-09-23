@@ -13,31 +13,29 @@ public class readFromExcel {
 		List<Submission> data = new ArrayList<>();
 
 		try {
-
 			// Creating a Workbook from an Excel file (.xls or .xlsx)
 			Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
 			Sheet sheet = workbook.getSheetAt(0);
-
-			// Create a DataFormatter to format and get each cell's value as String
-			DataFormatter dataFormatter = new DataFormatter();
 
 			// 1. You can obtain a rowIterator and columnIterator and iterate over them
 
 			CellStyle style = workbook.createCellStyle(); // Create new style
 			style.setWrapText(false); // Set wrap text false
-			List<String> ls = new ArrayList<String>();
 
 			for (Row row : sheet) {
 
-				for (Cell cell : row) {
+				Submission sub = new Submission();
 
-					cell.setCellStyle(style); // Apply style to cell
-					String cellValue = dataFormatter.formatCellValue(cell);
-					ls.add(cellValue);
-
-				}
-				Submission sub = new Submission(ls.get(0), Integer.valueOf(ls.get(1)), ls.get(2), ls.get(3).toString(),
-						ls.get(4), ls.get(5), ls.get(6), ls.get(7), ls.get(8), ls.get(9));
+				sub.setSender(row.getCell(0).toString());
+				sub.setSubmissionId(row.getCell(1).toString());
+				sub.setApplicationNumber(row.getCell(2).toString());
+				sub.setFormType(row.getCell(3).toString());
+				sub.setCurrentStates(row.getCell(4).toString());
+				sub.setReceivingTime(row.getCell(5).toString());
+				sub.setStateTimestamp(row.getCell(6).toString());
+				sub.setComment(row.getCell(7).toString());
+				sub.setTeam(row.getCell(8).toString());
+				sub.setStatus(row.getCell(9).toString());
 
 				data.add(sub);
 			}
@@ -47,6 +45,7 @@ public class readFromExcel {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+
 		return data;
 	}
 

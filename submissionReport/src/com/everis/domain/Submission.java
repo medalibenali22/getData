@@ -3,7 +3,7 @@ package com.everis.domain;
 public class Submission {
 	
 	String	sender;
-	Integer 	submissionId;
+	String 	submissionId;
 	String	applicationNumber;
 	String	formType;
 	String	currentStates;
@@ -13,7 +13,7 @@ public class Submission {
 	String	team;
 	String status;
 	
-	public Submission(String sender, Integer submissionId, String applicationNumber, String formType,
+	public Submission(String sender, String submissionId, String applicationNumber, String formType,
 			String currentStates, String receivingTime, String stateTimestamp, String comment, String team,
 			String status) {
 		super();
@@ -42,11 +42,11 @@ public class Submission {
 		this.sender = sender;
 	}
 
-	public Integer getSubmissionId() {
+	public String getSubmissionId() {
 		return submissionId;
 	}
 
-	public void setSubmissionId(Integer submissionId) {
+	public void setSubmissionId(String submissionId) {
 		this.submissionId = submissionId;
 	}
 
@@ -106,7 +106,7 @@ public class Submission {
 		this.team = team;
 	}
 
-	public String isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
